@@ -1,15 +1,23 @@
 {application, lemonde_fr_rss_filter, [
     {description, "rss_filter example for LeMonde.fr"},
-    {vsn, "0.1.0"},
-    {registered, []},
+    {vsn, "0.2.0"},
+    {registered, [lemonde_fr_rss_filter_sup, lemonde_fr_rss_filter_server]},
     {mod, {lemonde_fr_rss_filter_app, []}},
     {applications, [
+        cowboy,
         kernel,
         stdlib,
         rss_filter
     ]},
-    {env, []},
-    {modules, []},
+    {env, [
+        {pop_port,   0},
+        {query_port, 0},
+        {pop_seeds,  []}
+    ]},
+    {modules, [
+        lemonde_fr_rss_filter_sup,
+        lemonde_fr_rss_filter_server
+    ]},
     {licenses, ["Apache-2.0"]},
     {links, [{"GitHub", "https://github.com/EmergenceSystem/lemonde.fr_rss_filter"}]}
 ]}.
